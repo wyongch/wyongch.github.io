@@ -168,6 +168,114 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Battery-Historian-电量分析工具介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/22/Battery-Historian-电量分析工具介绍/">Battery Historian 电量分析工具介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/22/Battery-Historian-电量分析工具介绍/" class="archive-article-date">
+  	<time datetime="2018-05-22T09:41:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Battery Historian 概念</strong><br><strong>配置方法</strong><br><strong>bugreport抓取</strong><br><strong>Battery Historian分析bugreport</strong>   </p>
+<p>###Battery Historian 简介  ###</p>
+<blockquote>
+<p>Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信息，可以选择一个应用程序，检查所选择的应用程序对电池指标的影响。此外，它还允许对两个错误报告进行 A/B 比较，突出显示了关键电池相关指标的差异。</p>
+</blockquote>
+<p><strong>Battery Historian源码地址：<a href="https://github.com/google/battery-historian" target="_blank" rel="noopener">https://github.com/google/battery-historian</a></strong></p>
+<p>###配置方法  ###<br>Battery Historian 的运行需要很多环境的支持，要做很多配置，官网介绍了两个方法，一种是通过 Docker_百度百科 使用官网提供的已配置好的容器，另外一种就是老老实实自己配各种环境，第一种的Using Docker 看似较为简单，但有很多坑 …</p>
+<ol>
+<li><p>Using Docker（通过 Docker 来间接使用 Battery Historian）</p>
+</li>
+<li><p>Docker：<a href="https://docs.docker.com/engine/installation/" target="_blank" rel="noopener">https://docs.docker.com/engine/installation/</a></p>
+</li>
+</ol>
+<p><strong>你会惊奇地发现，Docker 只支持 Mac 和 Windows 10 ，哈哈，让你不用 Mac 开发：</strong>  </p>
+<p>###通过各种配置后从源码构建###<br><strong>（1）安装 Go 语言</strong><br>  下载地址：<a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></p>
+<p>安装配置环境变量  </p>
+<p><img src="https://i.imgur.com/ABhSXWU.png" alt=""></p>
+<pre><code>检查是否安装成功：cmd 执行 “go version”
+</code></pre><p><img src="https://i.imgur.com/iJtJrz8.png" alt=""></p>
+<p><strong>（2）安装 Python</strong><br>下载：<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a><br>【注意仅支持 python 2.7，python3.0改变很大】<br>安装配置环境变量  </p>
+<pre><code>检查是否安装成功：cmd 执行 “python –V”【注意是大写V】  
+</code></pre><p><img src="https://i.imgur.com/VRGTsL6.png" alt=""></p>
+<p><strong>（3）安装Git</strong>  </p>
+<p>下载地址：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>  </p>
+<pre><code>安装检查是否安装成功：cmd 执行 “git version”  
+</code></pre><p><img src="https://i.imgur.com/9DX49TA.png" alt=""></p>
+<p><strong>（4）下载 Battery Historian 源码</strong><br>cmd 执行下载命令  </p>
+<pre><code>“go get -d -u github.com/google/battery-historian/...”
+</code></pre><p>【注意最后有三个点】</p>
+<p>运行setup，需要下载想关联的软件包或者js</p>
+<pre><code>cmd 执行“go run setup.go”
+</code></pre><p>【第一次执行要下载，时间会久一些，只需要执行一次，以后就快些】<br><img src="https://i.imgur.com/U4KtFbx.png" alt=""></p>
+<pre><code>cmd 执行“go run cmd/battery-historian/battery-historian.go” 运行battery-historian  
+</code></pre><p><img src="https://i.imgur.com/7saAR0K.png" alt=""></p>
+<p><strong>登录查看</strong>  </p>
+<pre><code>登录网址 http://localhost:9999 查看是否运行  
+</code></pre><p><img src="https://i.imgur.com/SNvsQXl.png" alt=""></p>
+<p>导出手机的 Bugreport 文件  </p>
+<pre><code>cmd 执行“adb bugreport &gt; bugreport.txt”  
+</code></pre><p>上传 bugreport.txt 文件至 <a href="http://localhost:9999" target="_blank" rel="noopener">http://localhost:9999</a><br><img src="https://i.imgur.com/KMzJby5.png" alt=""></p>
+<p>通过Battery Historian 分析  </p>
+<p><img src="https://i.imgur.com/l8WpSaF.png" alt=""></p>
+<p><strong>FAQ：</strong></p>
+<ol>
+<li>Question：battery historian 上传Bugreport文件之后 Submit按钮不显示<br><img src="https://i.imgur.com/IQuGNLx.png" alt=""><br>Answer：这是由于国内无法访问外网导致，有一些在线JS无法加载出来，可以通过购买vpn代理或者安装插件解决。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/22/Battery-Historian-电量分析工具介绍/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android死机重启问题分析思路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -215,6 +323,7 @@
 <p><img src="https://i.imgur.com/4oJNbqT.png" alt=""></p>
 <h3 id="死机重启问题分析思路"><a href="#死机重启问题分析思路" class="headerlink" title="死机重启问题分析思路"></a>死机重启问题分析思路</h3><p>了解了wachdog机制就可以按照如下步骤分析死机重启问题</p>
 <p><img src="https://i.imgur.com/tZRcuvP.png" alt=""></p>
+<p>通过以上思路一般的死机重启问题都能分析定位出来，有些比较特殊的情况就要结合代码逻辑来分析。</p>
 
       
 
