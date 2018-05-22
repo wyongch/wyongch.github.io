@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Battery Historian 电量分析工具介绍 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    ###Battery Historian 简介  ###  Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备">
+  <meta name="description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允">
 <meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Battery Historian 电量分析工具介绍">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/22/Battery-Historian-电量分析工具介绍/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    ###Battery Historian 简介  ###  Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备">
+<meta property="og:description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/ABhSXWU.png">
 <meta property="og:image" content="https://i.imgur.com/iJtJrz8.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="https://i.imgur.com/KMzJby5.png">
 <meta property="og:image" content="https://i.imgur.com/l8WpSaF.png">
 <meta property="og:image" content="https://i.imgur.com/IQuGNLx.png">
-<meta property="og:updated_time" content="2018-05-22T10:29:16.257Z">
+<meta property="og:updated_time" content="2018-05-22T10:39:29.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Battery Historian 电量分析工具介绍">
-<meta name="twitter:description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    ###Battery Historian 简介  ###  Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备">
+<meta name="twitter:description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允">
 <meta name="twitter:image" content="https://i.imgur.com/ABhSXWU.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
@@ -199,12 +199,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>Battery Historian 概念</strong><br><strong>配置方法</strong><br><strong>bugreport抓取</strong><br><strong>Battery Historian分析bugreport</strong>   </p>
-<p>###Battery Historian 简介  ###</p>
-<blockquote>
+<h3 id="Battery-Historian-简介"><a href="#Battery-Historian-简介" class="headerlink" title="Battery Historian 简介"></a>Battery Historian 简介</h3><blockquote>
 <p>Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信息，可以选择一个应用程序，检查所选择的应用程序对电池指标的影响。此外，它还允许对两个错误报告进行 A/B 比较，突出显示了关键电池相关指标的差异。</p>
 </blockquote>
 <p><strong>Battery Historian源码地址：<a href="https://github.com/google/battery-historian" target="_blank" rel="noopener">https://github.com/google/battery-historian</a></strong></p>
-<p>###配置方法  ###<br>Battery Historian 的运行需要很多环境的支持，要做很多配置，官网介绍了两个方法，一种是通过 Docker_百度百科 使用官网提供的已配置好的容器，另外一种就是老老实实自己配各种环境，第一种的Using Docker 看似较为简单，但有很多坑 …</p>
+<h3 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h3><p>Battery Historian 的运行需要很多环境的支持，要做很多配置，官网介绍了两个方法，一种是通过 Docker_百度百科 使用官网提供的已配置好的容器，另外一种就是老老实实自己配各种环境，第一种的Using Docker 看似较为简单，但有很多坑 …</p>
 <ol>
 <li><p>Using Docker（通过 Docker 来间接使用 Battery Historian）</p>
 </li>
@@ -212,7 +211,7 @@
 </li>
 </ol>
 <p><strong>你会惊奇地发现，Docker 只支持 Mac 和 Windows 10 ，哈哈，让你不用 Mac 开发：</strong>  </p>
-<p>###通过各种配置后从源码构建###<br><strong>（1）安装 Go 语言</strong><br>  下载地址：<a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></p>
+<h3 id="通过各种配置后从源码构建"><a href="#通过各种配置后从源码构建" class="headerlink" title="通过各种配置后从源码构建"></a>通过各种配置后从源码构建</h3><p><strong>（1）安装 Go 语言</strong><br>  下载地址：<a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></p>
 <p>安装配置环境变量  </p>
 <p><img src="https://i.imgur.com/ABhSXWU.png" alt=""></p>
 <pre><code>检查是否安装成功：cmd 执行 “go version”
@@ -235,11 +234,9 @@
 <p><strong>登录查看</strong>  </p>
 <pre><code>登录网址 http://localhost:9999 查看是否运行  
 </code></pre><p><img src="https://i.imgur.com/SNvsQXl.png" alt=""></p>
-<p>导出手机的 Bugreport 文件  </p>
-<pre><code>cmd 执行“adb bugreport &gt; bugreport.txt”  
+<h3 id="导出手机的-Bugreport-文件"><a href="#导出手机的-Bugreport-文件" class="headerlink" title="导出手机的 Bugreport 文件"></a>导出手机的 Bugreport 文件</h3><pre><code>cmd 执行“adb bugreport &gt; bugreport.txt”  
 </code></pre><p>上传 bugreport.txt 文件至 <a href="http://localhost:9999" target="_blank" rel="noopener">http://localhost:9999</a><br><img src="https://i.imgur.com/KMzJby5.png" alt=""></p>
-<p>通过Battery Historian 分析  </p>
-<p><img src="https://i.imgur.com/l8WpSaF.png" alt=""></p>
+<h3 id="通过Battery-Historian-分析"><a href="#通过Battery-Historian-分析" class="headerlink" title="通过Battery Historian 分析"></a>通过Battery Historian 分析</h3><p><img src="https://i.imgur.com/l8WpSaF.png" alt=""></p>
 <p><strong>FAQ：</strong></p>
 <ol>
 <li>Question：battery historian 上传Bugreport文件之后 Submit按钮不显示<br><img src="https://i.imgur.com/IQuGNLx.png" alt=""><br>Answer：这是由于国内无法访问外网导致，有一些在线JS无法加载出来，可以通过购买vpn代理或者安装插件解决。</li>
