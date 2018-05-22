@@ -317,41 +317,9 @@
 <p>Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信息，可以选择一个应用程序，检查所选择的应用程序对电池指标的影响。此外，它还允许对两个错误报告进行 A/B 比较，突出显示了关键电池相关指标的差异。</p>
 </blockquote>
 <p><strong>Battery Historian源码地址：<a href="https://github.com/google/battery-historian" target="_blank" rel="noopener">https://github.com/google/battery-historian</a></strong></p>
-<h3 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h3><p>Battery Historian 的运行需要很多环境的支持，要做很多配置，官网介绍了两个方法，一种是通过 Docker_百度百科 使用官网提供的已配置好的容器，另外一种就是老老实实自己配各种环境，第一种的Using Docker 看似较为简单，但有很多坑 …</p>
-<h4 id="Using-Docker"><a href="#Using-Docker" class="headerlink" title="Using Docker"></a>Using Docker</h4><p>Using Docker（通过 Docker 来间接使用 Battery Historian）</p>
-<p>Docker下载地址：<a href="https://docs.docker.com/engine/installation/" target="_blank" rel="noopener">https://docs.docker.com/engine/installation/</a></p>
-<p><strong>你会惊奇地发现，Docker 只支持 Mac 和 Windows 10 ，哈哈，让你不用 Mac 开发：</strong>  </p>
-<h3 id="通过各种配置后从源码构建"><a href="#通过各种配置后从源码构建" class="headerlink" title="通过各种配置后从源码构建"></a>通过各种配置后从源码构建</h3><p><strong>（1）安装 Go 语言</strong><br>  下载地址：<a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></p>
-<p>安装配置环境变量  </p>
-<p><img src="https://i.imgur.com/ABhSXWU.png" alt=""></p>
-<pre><code>检查是否安装成功：cmd 执行 “go version”
-</code></pre><p><img src="https://i.imgur.com/iJtJrz8.png" alt=""></p>
-<p><strong>（2）安装 Python</strong><br>下载：<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a><br>【注意仅支持 python 2.7，python3.0改变很大】<br>安装配置环境变量  </p>
-<pre><code>检查是否安装成功：cmd 执行 “python –V”【注意是大写V】  
-</code></pre><p><img src="https://i.imgur.com/VRGTsL6.png" alt=""></p>
-<p><strong>（3）安装Git</strong>  </p>
-<p>下载地址：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>  </p>
-<pre><code>安装检查是否安装成功：cmd 执行 “git version”  
-</code></pre><p><img src="https://i.imgur.com/9DX49TA.png" alt=""></p>
-<p><strong>（4）下载 Battery Historian 源码</strong><br>cmd 执行下载命令  </p>
-<pre><code>“go get -d -u github.com/google/battery-historian/...”
-</code></pre><p>【注意最后有三个点】</p>
-<p>运行setup，需要下载想关联的软件包或者js</p>
-<pre><code>cmd 执行“go run setup.go”
-</code></pre><p>【第一次执行要下载，时间会久一些，只需要执行一次，以后就快些】<br><img src="https://i.imgur.com/U4KtFbx.png" alt=""></p>
-<pre><code>cmd 执行“go run cmd/battery-historian/battery-historian.go” 运行battery-historian  
-</code></pre><p><img src="https://i.imgur.com/7saAR0K.png" alt=""></p>
-<p><strong>登录查看</strong>  </p>
-<pre><code>登录网址 http://localhost:9999 查看是否运行  
-</code></pre><p><img src="https://i.imgur.com/SNvsQXl.png" alt=""></p>
-<h3 id="导出手机的-Bugreport-文件"><a href="#导出手机的-Bugreport-文件" class="headerlink" title="导出手机的 Bugreport 文件"></a>导出手机的 Bugreport 文件</h3><pre><code>cmd 执行“adb bugreport &gt; bugreport.txt”  
-</code></pre><p>上传 bugreport.txt 文件至 <a href="http://localhost:9999" target="_blank" rel="noopener">http://localhost:9999</a><br><img src="https://i.imgur.com/KMzJby5.png" alt=""></p>
-<h3 id="通过Battery-Historian-分析"><a href="#通过Battery-Historian-分析" class="headerlink" title="通过Battery Historian 分析"></a>通过Battery Historian 分析</h3><p><img src="https://i.imgur.com/l8WpSaF.png" alt=""></p>
-<p><strong>FAQ：</strong></p>
-<ol>
-<li>Question：battery historian 上传Bugreport文件之后 Submit按钮不显示<br><img src="https://i.imgur.com/IQuGNLx.png" alt=""><br>Answer：这是由于国内无法访问外网导致，有一些在线JS无法加载出来，可以通过购买vpn代理或者安装插件解决。</li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2018/05/22/Battery-Historian-电量分析工具介绍/#more">more >></a>
+        
       
 
       
@@ -359,6 +327,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Android 电池</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -417,31 +396,9 @@
 <p>SWT是Software Watchdog的缩写，在android系统中为了监控systemservers是否处于正常运行，加入了SWT线程来监控SystemServer重要线程/Service的运行情况。判断如果阻塞超过60秒，就会把系统重启，来保证系统恢复正常状态 </p>
 </blockquote>
 <p>概述：android系统中死机跟重启是有联系的，系统级的服务发生异常导致系统无响应，android系统中通过watchdog机制，将系统服务的无响应转换成重启，保证系统正常运行。</p>
-<h3 id="死机现象："><a href="#死机现象：" class="headerlink" title="死机现象："></a>死机现象：</h3><p>   点击屏幕，power键无响应</p>
-<h3 id="死机原因："><a href="#死机原因：" class="headerlink" title="死机原因："></a>死机原因：</h3><p>逻辑行为异常  </p>
-<ol>
-<li>逻辑判断错误  </li>
-<li>逻辑设计错误</li>
-</ol>
-<p>逻辑卡顿(block)  </p>
-<ol>
-<li>死循环 (Deadloop)  </li>
-<li>死锁 (Deadlock)</li>
-</ol>
-<h3 id="watchdog机制原理："><a href="#watchdog机制原理：" class="headerlink" title="watchdog机制原理："></a>watchdog机制原理：</h3><p>watchdong机制中主要有两种方式去check systemserver<br>1 通过Service注册的monitor去check</p>
-<p>2 通过handler发送msg到重要的loop线程来check是否阻塞</p>
-<p><img src="https://i.imgur.com/Vt610dl.png" alt=""></p>
-<p>watchdog监控的系统线程  </p>
-<h3 id="watchdog-执行流程"><a href="#watchdog-执行流程" class="headerlink" title="watchdog 执行流程"></a>watchdog 执行流程</h3><p>初始化：添加好所以要监控的线程和service</p>
-<p>开 始：watchdog 本身是一个实现runnable接口的线程，开始运行后，每分钟check一次初始化中添加的线程以及service是否有回应</p>
-<p>半分钟：半分钟后check系统是否有卡顿，如果卡住则dump system_server的backtrace，否则重新计时</p>
-<p>一分钟：一分钟后检查系统是否有卡住，如果卡住则第二次dump trace并且kill 掉systemserver，否则重新计时</p>
-<p>如下图</p>
-<p><img src="https://i.imgur.com/4oJNbqT.png" alt=""></p>
-<h3 id="死机重启问题分析思路"><a href="#死机重启问题分析思路" class="headerlink" title="死机重启问题分析思路"></a>死机重启问题分析思路</h3><p>了解了wachdog机制就可以按照如下步骤分析死机重启问题</p>
-<p><img src="https://i.imgur.com/tZRcuvP.png" alt=""></p>
-<p>通过以上思路一般的死机重启问题都能分析定位出来，有些比较特殊的情况就要结合代码逻辑来分析。</p>
-
+        
+          <a class="article-more-a" href="/2018/05/15/Android死机重启问题分析思路/#more">more >></a>
+        
       
 
       
@@ -449,6 +406,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -698,6 +666,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Android 电池</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
