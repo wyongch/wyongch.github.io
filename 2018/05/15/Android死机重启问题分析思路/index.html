@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Android死机重启问题分析思路 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+  <meta name="description" content="Android死机重启问题分析思路概述：android系统中死机跟重启是有联系的，一般是系统级的服务发生异常导致系统无响应，android系统中通过watchdog机制，将系统服务的无响应转换成重启，提升用户体验  死机现象：点击屏幕，power键无响应  死机原因：系统主要服务运行异常     watchdog机制：watchdong机制中主要有两种方式去check systemserver">
 <meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android死机重启问题分析思路">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/15/Android死机重启问题分析思路/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta property="og:description" content="Android死机重启问题分析思路概述：android系统中死机跟重启是有联系的，一般是系统级的服务发生异常导致系统无响应，android系统中通过watchdog机制，将系统服务的无响应转换成重启，提升用户体验  死机现象：点击屏幕，power键无响应  死机原因：系统主要服务运行异常     watchdog机制：watchdong机制中主要有两种方式去check systemserver">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-15T08:16:47.007Z">
+<meta property="og:image" content="https://i.imgur.com/KC84EFj.png">
+<meta property="og:updated_time" content="2018-05-22T02:31:57.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android死机重启问题分析思路">
-<meta name="twitter:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:description" content="Android死机重启问题分析思路概述：android系统中死机跟重启是有联系的，一般是系统级的服务发生异常导致系统无响应，android系统中通过watchdog机制，将系统服务的无响应转换成重启，提升用户体验  死机现象：点击屏幕，power键无响应  死机原因：系统主要服务运行异常     watchdog机制：watchdong机制中主要有两种方式去check systemserver">
+<meta name="twitter:image" content="https://i.imgur.com/KC84EFj.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
   
@@ -187,7 +189,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Android死机重启问题分析思路"><a href="#Android死机重启问题分析思路" class="headerlink" title="Android死机重启问题分析思路"></a>Android死机重启问题分析思路</h2><p>概述：android系统中死机跟重启是有联系的，一般是系统级的服务发生异常导致系统无响应，android系统中通过watchdog机制，将系统服务的无响应转换成重启，提升用户体验</p>
+<ol>
+<li><p>死机现象：<br>点击屏幕，power键无响应</p>
+</li>
+<li><p>死机原因：<br>系统主要服务运行异常</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/KC84EFj.png" alt=""></p>
+<ol start="3">
+<li>watchdog机制：<br>watchdong机制中主要有两种方式去check systemserver </li>
+</ol>
+
       
 
       
@@ -203,6 +216,16 @@
                   <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
