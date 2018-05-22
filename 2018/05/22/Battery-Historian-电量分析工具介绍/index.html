@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Battery Historian 电量分析工具介绍 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允">
+  <meta name="description" content="Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信">
 <meta name="keywords" content="Android,功耗,电池">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Battery Historian 电量分析工具介绍">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/22/Battery-Historian-电量分析工具介绍/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允">
+<meta property="og:description" content="Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/ABhSXWU.png">
 <meta property="og:image" content="https://i.imgur.com/iJtJrz8.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="https://i.imgur.com/KMzJby5.png">
 <meta property="og:image" content="https://i.imgur.com/l8WpSaF.png">
 <meta property="og:image" content="https://i.imgur.com/IQuGNLx.png">
-<meta property="og:updated_time" content="2018-05-22T11:18:11.229Z">
+<meta property="og:updated_time" content="2018-05-22T11:40:31.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Battery Historian 电量分析工具介绍">
-<meta name="twitter:description" content="Battery Historian 概念配置方法bugreport抓取Battery Historian分析bugreport    Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允">
+<meta name="twitter:description" content="Battery Historian 简介 Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信">
 <meta name="twitter:image" content="https://i.imgur.com/ABhSXWU.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
@@ -198,8 +198,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>Battery Historian 概念</strong><br><strong>配置方法</strong><br><strong>bugreport抓取</strong><br><strong>Battery Historian分析bugreport</strong>   </p>
-<h3 id="Battery-Historian-简介"><a href="#Battery-Historian-简介" class="headerlink" title="Battery Historian 简介"></a>Battery Historian 简介</h3><blockquote>
+        <h3 id="Battery-Historian-简介"><a href="#Battery-Historian-简介" class="headerlink" title="Battery Historian 简介"></a>Battery Historian 简介</h3><blockquote>
 <p>Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信息，可以选择一个应用程序，检查所选择的应用程序对电池指标的影响。此外，它还允许对两个错误报告进行 A/B 比较，突出显示了关键电池相关指标的差异。</p>
 </blockquote>
 <p><strong>Battery Historian源码地址：<a href="https://github.com/google/battery-historian" target="_blank" rel="noopener">https://github.com/google/battery-historian</a></strong></p>
@@ -208,7 +207,7 @@
 <h4 id="Using-Docker"><a href="#Using-Docker" class="headerlink" title="Using Docker"></a>Using Docker</h4><p>Using Docker（通过 Docker 来间接使用 Battery Historian）</p>
 <p>Docker下载地址：<a href="https://docs.docker.com/engine/installation/" target="_blank" rel="noopener">https://docs.docker.com/engine/installation/</a></p>
 <p><strong>你会惊奇地发现，Docker 只支持 Mac 和 Windows 10 ，哈哈，让你不用 Mac 开发：</strong>  </p>
-<h3 id="通过各种配置后从源码构建"><a href="#通过各种配置后从源码构建" class="headerlink" title="通过各种配置后从源码构建"></a>通过各种配置后从源码构建</h3><p><strong>（1）安装 Go 语言</strong><br>  下载地址：<a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></p>
+<h4 id="通过各种配置后从源码构建"><a href="#通过各种配置后从源码构建" class="headerlink" title="通过各种配置后从源码构建"></a>通过各种配置后从源码构建</h4><p><strong>（1）安装 Go 语言</strong><br>  下载地址：<a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></p>
 <p>安装配置环境变量  </p>
 <p><img src="https://i.imgur.com/ABhSXWU.png" alt=""></p>
 <pre><code>检查是否安装成功：cmd 执行 “go version”
@@ -398,7 +397,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Battery-Historian-简介"><span class="toc-number">1.</span> <span class="toc-text">Battery Historian 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置方法"><span class="toc-number">2.</span> <span class="toc-text">配置方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Docker"><span class="toc-number">2.1.</span> <span class="toc-text">Using Docker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过各种配置后从源码构建"><span class="toc-number">3.</span> <span class="toc-text">通过各种配置后从源码构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导出手机的-Bugreport-文件"><span class="toc-number">4.</span> <span class="toc-text">导出手机的 Bugreport 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过Battery-Historian-分析"><span class="toc-number">5.</span> <span class="toc-text">通过Battery Historian 分析</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Battery-Historian-简介"><span class="toc-number">1.</span> <span class="toc-text">Battery Historian 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置方法"><span class="toc-number">2.</span> <span class="toc-text">配置方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Docker"><span class="toc-number">2.1.</span> <span class="toc-text">Using Docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过各种配置后从源码构建"><span class="toc-number">2.2.</span> <span class="toc-text">通过各种配置后从源码构建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导出手机的-Bugreport-文件"><span class="toc-number">3.</span> <span class="toc-text">导出手机的 Bugreport 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过Battery-Historian-分析"><span class="toc-number">4.</span> <span class="toc-text">通过Battery Historian 分析</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -511,6 +510,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">省电模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Doze</a>
               </li>
              
               <li class="article-tag-list-item">

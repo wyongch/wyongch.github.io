@@ -188,6 +188,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <h2 id="Doze-简介"><a href="#Doze-简介" class="headerlink" title="Doze 简介"></a>Doze 简介</h2><p>在M（6.0）版本之后，在设备或者app空闲的状态下，android引入了一个新的省电模式 Doze<br>Doze: 提高设备空闲时的休眠效率<br>如果用户设备屏幕关闭，没有充电，并且静置一段时间，设备将会进入到doze模式，尝试保持系统休眠状态.</p>
+        
+          <a class="article-more-a" href="/2018/05/22/Android-Doze-省电原理/#more">more >></a>
         
       
 
@@ -196,6 +199,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">省电模式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Doze</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -312,8 +334,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>Battery Historian 概念</strong><br><strong>配置方法</strong><br><strong>bugreport抓取</strong><br><strong>Battery Historian分析bugreport</strong>   </p>
-<h3 id="Battery-Historian-简介"><a href="#Battery-Historian-简介" class="headerlink" title="Battery Historian 简介"></a>Battery Historian 简介</h3><blockquote>
+        <h3 id="Battery-Historian-简介"><a href="#Battery-Historian-简介" class="headerlink" title="Battery Historian 简介"></a>Battery Historian 简介</h3><blockquote>
 <p>Battery Historian 是一个这样的的工具：可以在 Android 5.0 Lollipop（API 级别21）及更高版本的 Android 设备上检测与电池相关的信息和事件，而在此期间，该设备没有插上电源。它允许应用程序开发人员在时间轴上可视化系统和应用级别的事件，并使用平移和缩放功能，在设备最后一次完全充电之后，可以轻松地查看各种聚合统计信息，可以选择一个应用程序，检查所选择的应用程序对电池指标的影响。此外，它还允许对两个错误报告进行 A/B 比较，突出显示了关键电池相关指标的差异。</p>
 </blockquote>
 <p><strong>Battery Historian源码地址：<a href="https://github.com/google/battery-historian" target="_blank" rel="noopener">https://github.com/google/battery-historian</a></strong></p>
@@ -400,7 +421,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
+        <h2 id="SWT简介"><a href="#SWT简介" class="headerlink" title="SWT简介"></a>SWT简介</h2><blockquote>
 <p>SWT是Software Watchdog的缩写，在android系统中为了监控systemservers是否处于正常运行，加入了SWT线程来监控SystemServer重要线程/Service的运行情况。判断如果阻塞超过60秒，就会把系统重启，来保证系统恢复正常状态 </p>
 </blockquote>
 <p>概述：android系统中死机跟重启是有联系的，系统级的服务发生异常导致系统无响应，android系统中通过watchdog机制，将系统服务的无响应转换成重启，保证系统正常运行。</p>
@@ -689,6 +710,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">省电模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Doze</a>
               </li>
              
               <li class="article-tag-list-item">

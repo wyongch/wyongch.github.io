@@ -6,24 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.wyongch.top">
-  <title>Android死机重启问题分析思路 | 吴勇超的博客</title>
+  <title>Tag: Doze | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SWT简介 SWT是Software Watchdog的缩写，在android系统中为了监控systemservers是否处于正常运行，加入了SWT线程来监控SystemServer重要线程/Service的运行情况。判断如果阻塞超过60秒，就会把系统重启，来保证系统恢复正常状态   概述：android系统中死机跟重启是有联系的，系统级的服务发生异常导致系统无响应，android系统中通过wat">
-<meta name="keywords" content="Android,死机重启,功耗,性能">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android死机重启问题分析思路">
-<meta property="og:url" content="https://www.wyongch.top/2018/05/15/Android死机重启问题分析思路/index.html">
+  <meta name="description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
+<meta property="og:type" content="website">
+<meta property="og:title" content="吴勇超的博客">
+<meta property="og:url" content="https://www.wyongch.top/tags/Doze/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="SWT简介 SWT是Software Watchdog的缩写，在android系统中为了监控systemservers是否处于正常运行，加入了SWT线程来监控SystemServer重要线程/Service的运行情况。判断如果阻塞超过60秒，就会把系统重启，来保证系统恢复正常状态   概述：android系统中死机跟重启是有联系的，系统级的服务发生异常导致系统无响应，android系统中通过wat">
+<meta property="og:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/Vt610dl.png">
-<meta property="og:image" content="https://i.imgur.com/4oJNbqT.png">
-<meta property="og:image" content="https://i.imgur.com/tZRcuvP.png">
-<meta property="og:updated_time" content="2018-05-22T11:42:13.938Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android死机重启问题分析思路">
-<meta name="twitter:description" content="SWT简介 SWT是Software Watchdog的缩写，在android系统中为了监控systemservers是否处于正常运行，加入了SWT线程来监控SystemServer重要线程/Service的运行情况。判断如果阻塞超过60秒，就会把系统重启，来保证系统恢复正常状态   概述：android系统中死机跟重启是有联系的，系统级的服务发生异常导致系统无响应，android系统中通过wat">
-<meta name="twitter:image" content="https://i.imgur.com/Vt610dl.png">
+<meta name="twitter:title" content="吴勇超的博客">
+<meta name="twitter:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
   
@@ -171,94 +166,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Android死机重启问题分析思路" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Android死机重启问题分析思路
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/05/22/Android-Doze-省电原理/" class="archive-article-date">
+  	<time datetime="2018-05-22T10:48:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/05/22/Android-Doze-省电原理/">Android Doze 省电原理</a>
     </h1>
   
 
-        
-        <a href="/2018/05/15/Android死机重启问题分析思路/" class="archive-article-date">
-  	<time datetime="2018-05-15T08:16:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="SWT简介"><a href="#SWT简介" class="headerlink" title="SWT简介"></a>SWT简介</h2><blockquote>
-<p>SWT是Software Watchdog的缩写，在android系统中为了监控systemservers是否处于正常运行，加入了SWT线程来监控SystemServer重要线程/Service的运行情况。判断如果阻塞超过60秒，就会把系统重启，来保证系统恢复正常状态 </p>
-</blockquote>
-<p>概述：android系统中死机跟重启是有联系的，系统级的服务发生异常导致系统无响应，android系统中通过watchdog机制，将系统服务的无响应转换成重启，保证系统正常运行。</p>
-<a id="more"></a>
-<h2 id="死机现象："><a href="#死机现象：" class="headerlink" title="死机现象："></a>死机现象：</h2><p>   点击屏幕，power键无响应</p>
-<h2 id="死机原因："><a href="#死机原因：" class="headerlink" title="死机原因："></a>死机原因：</h2><p>逻辑行为异常  </p>
-<ol>
-<li>逻辑判断错误  </li>
-<li>逻辑设计错误</li>
-</ol>
-<p>逻辑卡顿(block)  </p>
-<ol>
-<li>死循环 (Deadloop)  </li>
-<li>死锁 (Deadlock)</li>
-</ol>
-<h2 id="watchdog机制原理："><a href="#watchdog机制原理：" class="headerlink" title="watchdog机制原理："></a>watchdog机制原理：</h2><p>watchdong机制中主要有两种方式去check systemserver<br>1 通过Service注册的monitor去check</p>
-<p>2 通过handler发送msg到重要的loop线程来check是否阻塞</p>
-<p><img src="https://i.imgur.com/Vt610dl.png" alt=""></p>
-<p>watchdog监控的系统线程  </p>
-<h2 id="watchdog-执行流程"><a href="#watchdog-执行流程" class="headerlink" title="watchdog 执行流程"></a>watchdog 执行流程</h2><p>初始化：添加好所以要监控的线程和service</p>
-<p>开 始：watchdog 本身是一个实现runnable接口的线程，开始运行后，每分钟check一次初始化中添加的线程以及service是否有回应</p>
-<p>半分钟：半分钟后check系统是否有卡顿，如果卡住则dump system_server的backtrace，否则重新计时</p>
-<p>一分钟：一分钟后检查系统是否有卡住，如果卡住则第二次dump trace并且kill 掉systemserver，否则重新计时</p>
-<p>如下图</p>
-<p><img src="https://i.imgur.com/4oJNbqT.png" alt=""></p>
-<h2 id="死机重启问题分析思路"><a href="#死机重启问题分析思路" class="headerlink" title="死机重启问题分析思路"></a>死机重启问题分析思路</h2><p>了解了wachdog机制就可以按照如下步骤分析死机重启问题</p>
-<p><img src="https://i.imgur.com/tZRcuvP.png" alt=""></p>
-<p>通过以上思路一般的死机重启问题都能分析定位出来，有些比较特殊的情况就要结合代码逻辑来分析。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -268,142 +205,29 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">死机重启</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">省电模式</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">功耗</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">性能</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Doze</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.wyongch.top/2018/05/15/Android死机重启问题分析思路/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/05/22/Battery-Historian-电量分析工具介绍/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Battery Historian 电量分析工具介绍
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/05/15/Activity的前世今生/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Activity的前世今生</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SWT简介"><span class="toc-number">1.</span> <span class="toc-text">SWT简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死机现象："><span class="toc-number">2.</span> <span class="toc-text">死机现象：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死机原因："><span class="toc-number">3.</span> <span class="toc-text">死机原因：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#watchdog机制原理："><span class="toc-number">4.</span> <span class="toc-text">watchdog机制原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#watchdog-执行流程"><span class="toc-number">5.</span> <span class="toc-text">watchdog 执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死机重启问题分析思路"><span class="toc-number">6.</span> <span class="toc-text">死机重启问题分析思路</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -426,9 +250,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

@@ -8,18 +8,22 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Android Doze 省电原理 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
-<meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
+  <meta name="description" content="Doze 简介在M（6.0）版本之后，在设备或者app空闲的状态下，android引入了一个新的省电模式 DozeDoze: 提高设备空闲时的休眠效率如果用户设备屏幕关闭，没有充电，并且静置一段时间，设备将会进入到doze模式，尝试保持系统休眠状态.">
+<meta name="keywords" content="Android,省电模式,Doze">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Doze 省电原理">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/22/Android-Doze-省电原理/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta property="og:description" content="Doze 简介在M（6.0）版本之后，在设备或者app空闲的状态下，android引入了一个新的省电模式 DozeDoze: 提高设备空闲时的休眠效率如果用户设备屏幕关闭，没有充电，并且静置一段时间，设备将会进入到doze模式，尝试保持系统休眠状态.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T10:48:24.917Z">
+<meta property="og:image" content="https://i.imgur.com/xois1Kp.png">
+<meta property="og:image" content="https://i.imgur.com/SHkUuOi.png">
+<meta property="og:image" content="https://i.imgur.com/JpzjStW.png">
+<meta property="og:updated_time" content="2018-05-22T12:39:28.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Doze 省电原理">
-<meta name="twitter:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:description" content="Doze 简介在M（6.0）版本之后，在设备或者app空闲的状态下，android引入了一个新的省电模式 DozeDoze: 提高设备空闲时的休眠效率如果用户设备屏幕关闭，没有充电，并且静置一段时间，设备将会进入到doze模式，尝试保持系统休眠状态.">
+<meta name="twitter:image" content="https://i.imgur.com/xois1Kp.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
   
@@ -187,7 +191,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Doze-简介"><a href="#Doze-简介" class="headerlink" title="Doze 简介"></a>Doze 简介</h2><p>在M（6.0）版本之后，在设备或者app空闲的状态下，android引入了一个新的省电模式 Doze<br>Doze: 提高设备空闲时的休眠效率<br>如果用户设备屏幕关闭，没有充电，并且静置一段时间，设备将会进入到doze模式，尝试保持系统休眠状态.</p>
+<a id="more"></a>
+<p>In N, Doze are enhanced<br> stationary(M/N)<br> non-stationary(N)  </p>
+<p>Introduction about Doze&amp;AppStandby  </p>
+<p>参考文档<br><a href="https://developer.android.com/training/monitoring-device-state/doze-standby.html" target="_blank" rel="noopener">https://developer.android.com/training/monitoring-device-state/doze-standby.html</a><br><a href="https://developer.android.com/about/versions/nougat/android-7.0-changes.html" target="_blank" rel="noopener">https://developer.android.com/about/versions/nougat/android-7.0-changes.html</a></p>
+<h2 id="Doze原理"><a href="#Doze原理" class="headerlink" title="Doze原理"></a>Doze原理</h2><p>在doze模式下，系统会尝试通过限制应用程序访问网络和CPU密集型服务来节省电量。 它也阻止应用程序访问网络并推迟作业，同步和标准定时器。</p>
+<p>系统会定期退出doze，让应用程序完成延期活动。 在此维护期间，系统将运行所有未完成的同步，作业和定时任务，并允许应用程序访问网络。</p>
+<p><img src="https://i.imgur.com/xois1Kp.png" alt=""></p>
+<p>“DeviceIdle” 添加到系统服务，实现 Doze 特性.<br>DeviceIdleController.java  Doze的具体实现：通过状态机切换不同的状态，并且发送广播通知相关服务做一些限制操作。</p>
+<p><img src="https://i.imgur.com/SHkUuOi.png" alt=""></p>
+<h3 id="DeviceIdleController服务启动"><a href="#DeviceIdleController服务启动" class="headerlink" title="DeviceIdleController服务启动"></a>DeviceIdleController服务启动</h3><p>SystemServer 服务中启动DeviceIdleController服务<br>\frameworks\base\services\java\com\android\server\SystemServer.java</p>
+<pre><code>private void startOtherServices() {
+    ……
+    mSystemServiceManager.startService(DeviceIdleController.class);
+    ……
+}
+</code></pre><p>\frameworks\base\services\core\java\com\android\server\DeviceIdleController.java</p>
+<h3 id="Doze模式状态切换流程"><a href="#Doze模式状态切换流程" class="headerlink" title="Doze模式状态切换流程"></a>Doze模式状态切换流程</h3><p><strong>如下图所示：</strong><br><img src="https://i.imgur.com/JpzjStW.png" alt=""></p>
+<h2 id="Doze-两种模式"><a href="#Doze-两种模式" class="headerlink" title="Doze 两种模式"></a>Doze 两种模式</h2><p>在N版本上有两种Doze模式：deep  mode and light mode. 在M版本上只有 deep mode 一种.<br>Deep idle mode &amp; light idle mode<br>深度模式需要静止一段时间，但light模式不需要。<br>深度模式和light模式可以同时在设备上运行。.<br>设备首先进入light空闲模式，然后进入深度空闲模式<br>当设备进入深度空闲模式（空闲状态）时，light模式被忽略。 </p>
+<h3 id="deep-moden"><a href="#deep-moden" class="headerlink" title="deep moden"></a>deep moden</h3><p>在deep moden下，app有如下限制:  </p>
+<ol>
+<li>网络访问被暂停。  </li>
+<li>系统忽略唤醒锁。  </li>
+<li>标准唤醒定时器(包括setExact() and setWindow()) 被推迟到下一个维护window.  </li>
+<li>如果你需要在Doze模式下设置定时器，请使用 setAndAllowWhileIdle() or setExactAndAllowWhileIdle().  </li>
+<li>使用 setAlarmClock() 在系统退出Doze状态能够正常使用   </li>
+<li>系统不执行Wi-Fi扫描。  </li>
+<li>系统不允许同步任务运行。  </li>
+<li>系统不允许JobScheduler运行。  </li>
+</ol>
+<h3 id="light-mode"><a href="#light-mode" class="headerlink" title="light mode"></a>light mode</h3><p>The following restrictions apply to your apps while in light idle mode:<br>Network access is suspended.<br>The system does not allow sync adapters to run.<br>The system does not allow JobScheduler to run.</p>
+
       
 
       
@@ -226,6 +261,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">省电模式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Doze</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -319,7 +373,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Doze-简介"><span class="toc-number">1.</span> <span class="toc-text">Doze 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Doze原理"><span class="toc-number">2.</span> <span class="toc-text">Doze原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DeviceIdleController服务启动"><span class="toc-number">2.1.</span> <span class="toc-text">DeviceIdleController服务启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Doze模式状态切换流程"><span class="toc-number">2.2.</span> <span class="toc-text">Doze模式状态切换流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Doze-两种模式"><span class="toc-number">3.</span> <span class="toc-text">Doze 两种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#deep-moden"><span class="toc-number">3.1.</span> <span class="toc-text">deep moden</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#light-mode"><span class="toc-number">3.2.</span> <span class="toc-text">light mode</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -432,6 +486,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">省电模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Doze</a>
               </li>
              
               <li class="article-tag-list-item">
