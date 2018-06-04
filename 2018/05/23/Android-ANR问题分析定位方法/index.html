@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Android ANR问题分析定位方法 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CrashTombstoneVMRebootANRWatchdog Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是">
+  <meta name="description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
 <meta name="keywords" content="Android,Activity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android ANR问题分析定位方法">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/23/Android-ANR问题分析定位方法/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="CrashTombstoneVMRebootANRWatchdog Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是">
+<meta property="og:description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/pnQuvpB.png">
 <meta property="og:image" content="https://i.imgur.com/FGAGk5N.png">
@@ -34,10 +34,10 @@
 <meta property="og:image" content="https://i.imgur.com/K8e40CF.png">
 <meta property="og:image" content="https://i.imgur.com/QsycelM.png">
 <meta property="og:image" content="https://i.imgur.com/1lxMKhW.png">
-<meta property="og:updated_time" content="2018-06-04T10:02:55.366Z">
+<meta property="og:updated_time" content="2018-06-04T11:38:28.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android ANR问题分析定位方法">
-<meta name="twitter:description" content="CrashTombstoneVMRebootANRWatchdog Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是">
+<meta name="twitter:description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
 <meta name="twitter:image" content="https://i.imgur.com/pnQuvpB.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
@@ -213,11 +213,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Crash<br>Tombstone<br>VMReboot<br>ANR<br>Watchdog</p>
-<p>Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“<a href="mailto:system_app_crash@xxxxxxxxxxxx.txt" target="_blank" rel="noopener">system_app_crash@xxxxxxxxxxxx.txt</a>”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继续跟踪到抛出对应异常的位置，分析原因并解决。</p>
+        <p>Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“<a href="mailto:system_app_crash@xxxxxxxxxxxx.txt" target="_blank" rel="noopener">system_app_crash@xxxxxxxxxxxx.txt</a>”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继续跟踪到抛出对应异常的位置，分析原因并解决。</p>
 <blockquote>
 <p>Crash 主要分为Java层的和Native层，java层的crash 一般比较好分析，通过 log 和调用trace 可以准确的定位到具体是哪个类哪一行出现的问题，一般有空指针或者除数为零的原因导致；Native crash 一般是jni抛出的异常，需要通过 命令和对应的错误地址 定位是哪里出现问题</p>
 </blockquote>
+<a id="more"></a>
 <h1 id="Java-层-crash"><a href="#Java-层-crash" class="headerlink" title="Java 层 crash"></a>Java 层 crash</h1><p>例如，打开crash_log_16__2018_0327_141801后可以看到如下日志：</p>
 <p>  —– timezone:GMT<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime: FATAL EXCEPTION: main<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime: <font color="red">Process: com.android.settings, PID: 1346 </font><br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime: <font color="red">java.lang.RuntimeException: Unable to start activity<br>ComponentInfo{com.android.settings/com.android.settings.Settings$DateTimeSettingsActivity}: java.lang.NullPointerException: Attempt to invoke virtual method ‘void android.support.v7.preference.Preference.onPrepareForRemoval()’ on a null object reference  </font><br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2818)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2883)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.-wrap12(ActivityThread.java)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1611)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.os.Handler.dispatchMessage(Handler.java:110)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.os.Looper.loop(Looper.java:203)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.main(ActivityThread.java:6387)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at java.lang.reflect.Method.invoke(Native Method)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1084)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:945)  </p>
 <p>这几句log可以很清楚的看出是settings模块中发生了空指针异常，调用了一个无效的方法。<br>对应的类名，代码行数，全都打印出来了，找出原因直接到对应的位置修改即可。</p>
@@ -664,7 +664,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color5">省电模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Doze</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,19 +684,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">省电模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">tags</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Doze</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">电池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tags</a>
               </li>
             
             <div class="clearfix"></div>
