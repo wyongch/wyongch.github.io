@@ -333,7 +333,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“<a href="mailto:system_app_crash@xxxxxxxxxxxx.txt" target="_blank" rel="noopener">system_app_crash@xxxxxxxxxxxx.txt</a>”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继续跟踪到抛出对应异常的位置，分析原因并解决。</p>
+        <p>Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为 <a href="mailto:system_app_crash@xxxxxxxxxxxx.txt" target="_blank" rel="noopener">system_app_crash@xxxxxxxxxxxx.txt</a> 的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继续跟踪到抛出对应异常的位置，分析原因并解决。</p>
 <blockquote>
 <p>Crash 主要分为Java层的和Native层，java层的crash 一般比较好分析，通过 log 和调用trace 可以准确的定位到具体是哪个类哪一行出现的问题，一般有空指针或者除数为零的原因导致；Native crash 一般是jni抛出的异常，需要通过 命令和对应的错误地址 定位是哪里出现问题</p>
 </blockquote>
@@ -1201,15 +1201,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tags</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">电池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tags</a>
               </li>
             
             <div class="clearfix"></div>

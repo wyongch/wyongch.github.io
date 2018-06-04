@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Android ANR问题分析定位方法 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
+  <meta name="description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为 system_app_crash@xxxxxxxxxxxx.txt 的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
 <meta name="keywords" content="Android,Activity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android ANR问题分析定位方法">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/23/Android-ANR问题分析定位方法/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
+<meta property="og:description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为 system_app_crash@xxxxxxxxxxxx.txt 的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/pnQuvpB.png">
 <meta property="og:image" content="https://i.imgur.com/FGAGk5N.png">
@@ -34,10 +34,10 @@
 <meta property="og:image" content="https://i.imgur.com/K8e40CF.png">
 <meta property="og:image" content="https://i.imgur.com/QsycelM.png">
 <meta property="og:image" content="https://i.imgur.com/1lxMKhW.png">
-<meta property="og:updated_time" content="2018-06-04T11:38:28.365Z">
+<meta property="og:updated_time" content="2018-06-04T12:17:50.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android ANR问题分析定位方法">
-<meta name="twitter:description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“system_app_crash@xxxxxxxxxxxx.txt”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
+<meta name="twitter:description" content="Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为 system_app_crash@xxxxxxxxxxxx.txt 的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继">
 <meta name="twitter:image" content="https://i.imgur.com/pnQuvpB.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
@@ -213,14 +213,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为“<a href="mailto:system_app_crash@xxxxxxxxxxxx.txt" target="_blank" rel="noopener">system_app_crash@xxxxxxxxxxxx.txt</a>”的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继续跟踪到抛出对应异常的位置，分析原因并解决。</p>
+        <p>Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为 <a href="mailto:system_app_crash@xxxxxxxxxxxx.txt" target="_blank" rel="noopener">system_app_crash@xxxxxxxxxxxx.txt</a> 的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继续跟踪到抛出对应异常的位置，分析原因并解决。</p>
 <blockquote>
 <p>Crash 主要分为Java层的和Native层，java层的crash 一般比较好分析，通过 log 和调用trace 可以准确的定位到具体是哪个类哪一行出现的问题，一般有空指针或者除数为零的原因导致；Native crash 一般是jni抛出的异常，需要通过 命令和对应的错误地址 定位是哪里出现问题</p>
 </blockquote>
 <a id="more"></a>
-<h1 id="Java-层-crash"><a href="#Java-层-crash" class="headerlink" title="Java 层 crash"></a>Java 层 crash</h1><p>例如，打开crash_log_16__2018_0327_141801后可以看到如下日志：</p>
-<p>  —– timezone:GMT<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime: FATAL EXCEPTION: main<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime: <font color="red">Process: com.android.settings, PID: 1346 </font><br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime: <font color="red">java.lang.RuntimeException: Unable to start activity<br>ComponentInfo{com.android.settings/com.android.settings.Settings$DateTimeSettingsActivity}: java.lang.NullPointerException: Attempt to invoke virtual method ‘void android.support.v7.preference.Preference.onPrepareForRemoval()’ on a null object reference  </font><br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2818)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2883)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.-wrap12(ActivityThread.java)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1611)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.os.Handler.dispatchMessage(Handler.java:110)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.os.Looper.loop(Looper.java:203)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.main(ActivityThread.java:6387)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at java.lang.reflect.Method.invoke(Native Method)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1084)<br>01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:945)  </p>
-<p>这几句log可以很清楚的看出是settings模块中发生了空指针异常，调用了一个无效的方法。<br>对应的类名，代码行数，全都打印出来了，找出原因直接到对应的位置修改即可。</p>
+<h1 id="Java-层-crash"><a href="#Java-层-crash" class="headerlink" title="Java 层 crash"></a>Java 层 crash</h1><p>例如，打开crash_ log_ 16__ 2018_0327_141801后可以看到如下日志：</p>
+<pre><code>  ----- timezone:GMT  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime: FATAL EXCEPTION: main  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime: &lt;font color=red&gt;Process: com.android.settings, PID: 1346 &lt;/font&gt;  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime: &lt;font color=red&gt;java.lang.RuntimeException: Unable to start activity 
+ComponentInfo{com.android.settings/com.android.settings.Settings$DateTimeSettingsActivity}: java.lang.NullPointerException: Attempt to invoke virtual method &apos;void android.support.v7.preference.Preference.onPrepareForRemoval()&apos; on a null object reference  &lt;/font&gt;  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2818)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2883)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.-wrap12(ActivityThread.java)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1611)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.os.Handler.dispatchMessage(Handler.java:110)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.os.Looper.loop(Looper.java:203)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at android.app.ActivityThread.main(ActivityThread.java:6387)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at java.lang.reflect.Method.invoke(Native Method)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1084)  
+01-01 08:29:40.320553  1346  1346 E AndroidRuntime:     at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:945)  
+</code></pre><p>这几句log可以很清楚的看出是settings模块中发生了空指针异常，调用了一个无效的方法。<br>对应的类名，代码行数，全都打印出来了，找出原因直接到对应的位置修改即可。</p>
 <blockquote>
 <p>对于Crash类问题，要尽量找到出现异常的根因，而不是简单的加个try catch将异常捕获，除非是异常不是由本模块抛出的或者其它设计上的原因。</p>
 </blockquote>
@@ -276,26 +290,27 @@
 <p>对于这类ANR问题，查看trace日志主线程的通常会看到在应用层的调用之后紧跟一个libbinder.so，然后堆栈是都是清一色的binder调用，在不清楚binder跨进程调用机制的情况下难以进行下一步的分析。<br>　　binder本质上只是google为了方便实现进程间通信而实现的一种机制，由，可以较为方便的让程序员实现与服务端的互相访问，遇到这类型的ANR，需要找对binder对应的服务端，去分析服务端为何长时间不返回。</p>
 <p><img src="https://i.imgur.com/1lxMKhW.png" alt=""></p>
 <p>应用与服务端在跨进程调用时的关系可以简要概括为如上图，服务端会给予BnInterface派生一个类，其负责调用实际的处理过程，同时还会给予BpInterface派生一个类，其作为代理，负责通过内核跨进程调用，即跨进程调用BnInterface派生类的同名方法（也可不同名，但为了维护及代码阅读方便通常会使用同样的方法名称），这个代理类则提供给应用使用，所以遇到堆栈中看到Binder类的跨进程调用堆栈，下一步就是找对应的服务端BnInterface实现，而这依赖于对应服务模块的熟悉程度。</p>
-<p>`”Binder_1” sysTid=2422</p>
-<p>  #00  pc 000182e4  /system/lib/libc.so (__futex_syscall3+8)</p>
-<p>  #01  pc 0000e5fc  /system/lib/libc.so (__pthread_cond_timedwait_relative+48)</p>
-<p>  #02  pc 0000e658  /system/lib/libc.so (__pthread_cond_timedwait+60)</p>
-<p>  #03  pc 0000e6f0  /system/lib/libc.so (pthread_join+108)</p>
-<p>  #04  pc 00099907  /system/lib/libstagefright.so (android::LowPowerPlayer::requestAndWaitHiFiReqCmdThreadExit()+14)</p>
-<p>  #05  pc 0009a7dd  /system/lib/libstagefright.so (android::LowPowerPlayer::~LowPowerPlayer()+52)</p>
-<p>  #06  pc 0009aa91  /system/lib/libstagefright.so (android::LowPowerPlayer::~LowPowerPlayer()+4)</p>
-<p>  #07  pc 00061aff  /system/lib/libstagefright.so (android::AwesomePlayer::reset_l()+318)</p>
-<p>  #08  pc 00061cc3  /system/lib/libstagefright.so (android::AwesomePlayer::reset()+146)</p>
-<p>  #09  pc 0003075f  /system/lib/libmediaplayerservice.so (android::StagefrightPlayer::reset()+4)</p>
-<p>  #10  pc 0002c561  /system/lib/libmediaplayerservice.so (android::MediaPlayerService::Client::reset()+28)</p>
-<p>  #11  pc 0004ca31  /system/lib/libmedia.so (android::BnMediaPlayer::onTransact(unsigned int, android::Parcel const&amp;, android::Parcel*, unsigned int)+536)</p>
-<p> #12  pc 0001439d  /system/lib/libbinder.so (android::BBinder::transact(unsigned int, android::Parcel const&amp;, android::Parcel*, unsigned int)+60)</p>
-<p>  #13  pc 00016f99  /system/lib/libbinder.so (android::IPCThreadState::executeCommand(int)+516) `</p>
-<p>　　简易快速分析方法——利用一般情况下服务端的Binder派生类方法名和代理类的方法名一致这一点，直接在服务端进程去搜同类名的方法，例如先前的例子中是MediaPlayer::reset()方法，那么直接搜索reset()方法，即可搜索到到对应的调用堆栈，当然有可能不只一处，所以搜到后还需要继续看代码确认下是否对应的服务端实现，确认后就和一般的ANR问题分析解决方法一致了。具体的例子及详细分析方法可参考右上角的文档。</p>
+<pre><code>&quot;Binder_1&quot; sysTid=2422
+  #00  pc 000182e4  /system/lib/libc.so (__futex_syscall3+8)
+  #01  pc 0000e5fc  /system/lib/libc.so (__pthread_cond_timedwait_relative+48)
+  #02  pc 0000e658  /system/lib/libc.so (__pthread_cond_timedwait+60)
+  #03  pc 0000e6f0  /system/lib/libc.so (pthread_join+108)
+  #04  pc 00099907  /system/lib/libstagefright.so (android::LowPowerPlayer::requestAndWaitHiFiReqCmdThreadExit()+14)
+  #05  pc 0009a7dd  /system/lib/libstagefright.so (android::LowPowerPlayer::~LowPowerPlayer()+52)
+  #06  pc 0009aa91  /system/lib/libstagefright.so (android::LowPowerPlayer::~LowPowerPlayer()+4)
+  #07  pc 00061aff  /system/lib/libstagefright.so (android::AwesomePlayer::reset_l()+318)
+  #08  pc 00061cc3  /system/lib/libstagefright.so (android::AwesomePlayer::reset()+146)
+  #09  pc 0003075f  /system/lib/libmediaplayerservice.so (android::StagefrightPlayer::reset()+4)
+  #10  pc 0002c561  /system/lib/libmediaplayerservice.so (android::MediaPlayerService::Client::reset()+28)
+  #11  pc 0004ca31  /system/lib/libmedia.so (android::BnMediaPlayer::onTransact(unsigned int, android::Parcel const&amp;, android::Parcel*, unsigned int)+536)
+ #12  pc 0001439d  /system/lib/libbinder.so (android::BBinder::transact(unsigned int, android::Parcel const&amp;, android::Parcel*, unsigned int)+60)
+  #13  pc 00016f99  /system/lib/libbinder.so (android::IPCThreadState::executeCommand(int)+516) 
+</code></pre><p>　　简易快速分析方法——利用一般情况下服务端的Binder派生类方法名和代理类的方法名一致这一点，直接在服务端进程去搜同类名的方法，例如先前的例子中是MediaPlayer::reset()方法，那么直接搜索reset()方法，即可搜索到到对应的调用堆栈，当然有可能不只一处，所以搜到后还需要继续看代码确认下是否对应的服务端实现，确认后就和一般的ANR问题分析解决方法一致了。具体的例子及详细分析方法可参考右上角的文档。</p>
 <h1 id="VMReboot"><a href="#VMReboot" class="headerlink" title="VMReboot"></a>VMReboot</h1><blockquote>
 <p>VMReboot本质上就是系统关键服务（ActivityManagerService、WindowManagerService、PowerManagerService等）或者进程（system_server、surfaceflinger等）出现了Crash或者Tombstone，此时系统就会重启虚拟机以将系统还原成初始状态。处理方式本质上和Crash和Tombstone处理方法一样，分析对应的日志找到出错原因并修正。  </p>
 </blockquote>
 <p>Watchdog类问题本质上还是ANR，但是区别在于ANR一般是引用自身失去响应，而Watchdog则是各类系统重要服务失去响应（如ActivityManagerService、WindowManagerService等），然后挂载这些服务的进程system_server被杀后，必然会导致虚拟机重启。由于本质上相同，所以分析的方法也同ANR一致，重点看system_server_watchdog@xx日志，其和trace日志结构差不多，结合对应时间点的adb分析失去响应的原因并解决即可，只不过由于都是系统关键服务，代码复杂度较高，分析起来相对比较困难。</p>
+<p>死机重启问题请见另一篇blog<br><a href="https://www.wyongch.top/2018/05/15/Android%E6%AD%BB%E6%9C%BA%E9%87%8D%E5%90%AF%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/">https://www.wyongch.top/2018/05/15/Android%E6%AD%BB%E6%9C%BA%E9%87%8D%E5%90%AF%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/</a></p>
 
       
 
@@ -684,15 +699,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tags</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">电池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tags</a>
               </li>
             
             <div class="clearfix"></div>
