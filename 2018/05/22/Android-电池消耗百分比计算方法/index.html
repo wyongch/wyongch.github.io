@@ -8,18 +8,32 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Android  电池消耗百分比计算方法 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+  <meta name="description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改  电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。主要涉及的代码如下：frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值pack">
 <meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android  电池消耗百分比计算方法">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/22/Android-电池消耗百分比计算方法/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta property="og:description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改  电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。主要涉及的代码如下：frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值pack">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T10:47:23.503Z">
+<meta property="og:image" content="https://i.imgur.com/knWUeW5.png">
+<meta property="og:image" content="https://i.imgur.com/vJUvHvI.png">
+<meta property="og:image" content="https://i.imgur.com/kLdFCjV.png">
+<meta property="og:image" content="https://i.imgur.com/YKm1NcM.png">
+<meta property="og:image" content="https://i.imgur.com/nIOvIEv.png">
+<meta property="og:image" content="https://i.imgur.com/FvQLWiz.png">
+<meta property="og:image" content="https://i.imgur.com/L9HesmV.png">
+<meta property="og:image" content="https://i.imgur.com/AVKdG7V.png">
+<meta property="og:image" content="https://i.imgur.com/w0XTl5y.png">
+<meta property="og:image" content="https://i.imgur.com/dZ5zUBU.png">
+<meta property="og:image" content="https://i.imgur.com/DXl0WkU.png">
+<meta property="og:image" content="https://i.imgur.com/XAw7q95.png">
+<meta property="og:image" content="https://i.imgur.com/nGW3pRG.png">
+<meta property="og:updated_time" content="2018-06-05T08:50:07.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android  电池消耗百分比计算方法">
-<meta name="twitter:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改  电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。主要涉及的代码如下：frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值pack">
+<meta name="twitter:image" content="https://i.imgur.com/knWUeW5.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
   
@@ -194,7 +208,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
+<p>在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改</p>
+</blockquote>
+<p>电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。<br>主要涉及的代码如下：<br>frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值<br>packages\apps\Settings\src\com\android\settings\fuelgauge\PowerUsageSummary.java 具体的电流计算方法</p>
+<h1 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h1><h2 id="应用程序"><a href="#应用程序" class="headerlink" title="应用程序"></a>应用程序</h2><p>应用程序的电池消耗分为CPU消耗、wake lock消耗、数据传输消耗、GPS消耗、wifi连接消耗，其中wifi比较特殊，除了分散在各个应用中外，在电池统计项中也有一项专门的wifi项，这个也比较好理解，像数据传输、GPS都是应用使用的，而wifi除了应用使用外，即使没有任何应用使用，也还需要保持连接，这部分的消耗就归类到单独的wifi项里了。</p>
+<h3 id="CPU消耗"><a href="#CPU消耗" class="headerlink" title="CPU消耗"></a>CPU消耗</h3><p><img src="https://i.imgur.com/knWUeW5.png" alt=""></p>
+<p>其中CPU频率在power_profile.xml中的”cpu.speeds”中填写，可填写多个，各个频率下对应的cpu功率则在”cpu.active”中填写，顺序上必须与”cpu.speeds”一致。CPU时间指的是在指定的频率下运行的时间。</p>
+<h3 id="Wake-lock消耗"><a href="#Wake-lock消耗" class="headerlink" title="Wake lock消耗"></a>Wake lock消耗</h3><p><img src="https://i.imgur.com/vJUvHvI.png" alt=""></p>
+<p>其中wake lock功率在power_profile.xml中的”cpu.awake”中填写。</p>
+<h3 id="数据传输消耗"><a href="#数据传输消耗" class="headerlink" title="数据传输消耗"></a>数据传输消耗</h3><p><img src="https://i.imgur.com/kLdFCjV.png" alt=""></p>
+<p>其中WiFi功率在power_profile.xml中的”wifi.active”填写，移动数据功率在power_profile.xml中的” radio.active”填写。</p>
+<h3 id="GPS消耗"><a href="#GPS消耗" class="headerlink" title="GPS消耗"></a>GPS消耗</h3><p><img src="https://i.imgur.com/YKm1NcM.png" alt=""></p>
+<p>其中GPS功率在power_profile.xml中的”gps.on”中填写。</p>
+<h3 id="Wi-Fi连接消耗"><a href="#Wi-Fi连接消耗" class="headerlink" title="Wi-Fi连接消耗"></a>Wi-Fi连接消耗</h3><p><img src="https://i.imgur.com/nIOvIEv.png" alt=""></p>
+<p>其中WiFi连接功率在power_profile.xml中的”wifi.on”填写。</p>
+<p>所以</p>
+<p><img src="https://i.imgur.com/FvQLWiz.png" alt=""></p>
+<p>对于每个应用，Settings采用UID来遍历每个系统中的所有应用，我们可以通过adb shell ps来查看USER栏，这个就是UID的name。如下：</p>
+<pre><code>USER     PID   PPID  VSIZE  RSS     WCHAN    PC         NAME
+root      158   2     0      0     c00cba00 00000000 S pvr_workqueue
+root      184   2     0      0     c00cba00 00000000 S omaplfb
+root      208   2     0      0     c015f410 00000000 S flush-179:0
+system    215   141   573012 88196 ffffffff 40040730 S system_server
+log       291   1     732    284   c02dfad8 400c84f8 S /system/bin/logwrapper
+bluetooth 292   291   18256  3744  ffffffff 400f8650 S /system/bin/btld
+system    332   141   498532 72836 ffffffff 40041444 S com.android.systemui
+app_59    417   141   468868 47104 ffffffff 40041444 S com.huawei.inputmethod.hwpal
+log       457   1     732    284   c02dfad8 400d94f8 S /system/bin/logwrapper
+bluetooth 458   457   2144   1196  c014b78c ffff0520 S /system/bin/bluetoothd
+radio     459   141   498380 54744 ffffffff 40041444 S com.android.phone
+bluetooth 466   141   457940 33844 ffffffff 40041444 S com.broadcom.bt.app.system
+app_61    488   141   530612 86720 ffffffff 40041444 S com.huawei.android.launcher
+</code></pre><p>对于一般的应用，它们的UID Name都是app_开头，后面接数字。这个表现在电池消耗列表中就是一个单独的应用。而对于USER是root的，就归类为Android OS，对于USER是system的，就归类为Android System（Android 系统），对于USER是mediaserver的，就归类为Mediaserver（媒体服务器）。而USER是wi-fi和bluetooth的应用，则是统计到器件消耗，在下一章会介绍。</p>
+<h2 id="器件消耗"><a href="#器件消耗" class="headerlink" title="器件消耗"></a>器件消耗</h2><h3 id="语言通话"><a href="#语言通话" class="headerlink" title="语言通话"></a>语言通话</h3><p><img src="https://i.imgur.com/L9HesmV.png" alt=""></p>
+<p>其中通话功率在power_profile.xml中的”radio.active”填写。</p>
+<h3 id="屏幕"><a href="#屏幕" class="headerlink" title="屏幕"></a>屏幕</h3><p><img src="https://i.imgur.com/AVKdG7V.png" alt=""></p>
+<p>计算屏幕功耗时把屏幕亮度分为5个等级，分别为0、1、2、3、4。其中亮屏功耗在power_profile.xml中的”screen.on”填写，背光最亮时的功耗在”screen.full”填写。</p>
+<h3 id="Wi-Fi"><a href="#Wi-Fi" class="headerlink" title="Wi-Fi"></a>Wi-Fi</h3><p><img src="https://i.imgur.com/w0XTl5y.png" alt=""></p>
+<p>其中是计算应用程序时，UID是Process.WIFI_UID的应用程序所消耗的功耗。应用使用的WiFi连接时间是计算应用程序时，所有应用所占据的WiFi连接时间的综合。WiFi连接功率在power_profile.xml中的”wifi.on”填写。</p>
+<h3 id="蓝牙"><a href="#蓝牙" class="headerlink" title="蓝牙"></a>蓝牙</h3><p><img src="https://i.imgur.com/dZ5zUBU.png" alt=""></p>
+<p>其中是计算应用程序时，UID是Process.BLUETOOTH_GID的应用程序所消耗的功耗。蓝牙功耗在power_profile.xml中的”bluetooth.on”填写，蓝牙ping功耗在”bluetooth.at”中填写。</p>
+<h3 id="插卡待机耗电量"><a href="#插卡待机耗电量" class="headerlink" title="插卡待机耗电量"></a>插卡待机耗电量</h3><p><img src="https://i.imgur.com/DXl0WkU.png" alt=""></p>
+<p>其中待机功耗在power_profile.xml中的”radio.on”中填写，可以填写多列对应不同信号强度。搜索信号功耗在”radio.scanning”中填写。</p>
+<h3 id="灭屏待机耗电量"><a href="#灭屏待机耗电量" class="headerlink" title="灭屏待机耗电量"></a>灭屏待机耗电量</h3><p><img src="https://i.imgur.com/XAw7q95.png" alt=""></p>
+<p>其中CPU待机功耗在power_profile.xml中的”cpu.idle”中填写。注意：如果是平板电脑，此项显示为“平板电脑待机”。</p>
+<h2 id="统计方法"><a href="#统计方法" class="headerlink" title="统计方法"></a>统计方法</h2><p>手机总的耗电量就是上面各个子项耗电量的总和。</p>
+<p><img src="https://i.imgur.com/nGW3pRG.png" alt=""></p>
+<p>在Settings的电池选项中，最多会列出10项最耗电的子项，对于耗电量在5mAH以下或耗电百分比在1%以下的，就不会显示在列表中。所以总和是有可能小于100%的。另外也并不是所有的器件耗电都有统计，如camera就没有统计camera器件的耗电量。所以耗电量只是一个估计值，仅供参考。</p>
+<p>#索引#<br>Power_profile.xml文件说明<br>（如果文件中未配置某项，计算耗电量时会认为这一项的值为0。）</p>
+<pre><code>cpu.idle
+cpu.awake
+cpu.active
+wifi.scan
+wifi.on
+wifi.active
+gps.on
+bluetooth.on
+bluetooth.active
+bluetooth.at
+screen.on
+radio.on
+radio.scanning
+radio.active
+screen.full
+dsp.audio
+dsp.video
+cpu.speeds
+battery.capacity
+</code></pre><h1 id="Dump-batteryinfo"><a href="#Dump-batteryinfo" class="headerlink" title="Dump batteryinfo"></a>Dump batteryinfo</h1><p>进入adb shell，通过dumpsys batteryinfo可以查看更详细的电池信息，之前提到过，setting里面的电池信息中CPU唤醒时间只包含了java层应用程序的唤醒时间，对于kernel层的唤醒时间无法看到，通过dumpsys batteryinfo命令，就可以看到kernel层哪些进程在保持cpu的唤醒状态。原理是通过文件节点/proc/wakelocks来统计的。</p>
+
       
 
       
@@ -335,7 +418,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计算公式"><span class="toc-number">2.</span> <span class="toc-text">计算公式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用程序"><span class="toc-number">2.1.</span> <span class="toc-text">应用程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU消耗"><span class="toc-number">2.1.1.</span> <span class="toc-text">CPU消耗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wake-lock消耗"><span class="toc-number">2.1.2.</span> <span class="toc-text">Wake lock消耗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据传输消耗"><span class="toc-number">2.1.3.</span> <span class="toc-text">数据传输消耗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPS消耗"><span class="toc-number">2.1.4.</span> <span class="toc-text">GPS消耗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wi-Fi连接消耗"><span class="toc-number">2.1.5.</span> <span class="toc-text">Wi-Fi连接消耗</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#器件消耗"><span class="toc-number">2.2.</span> <span class="toc-text">器件消耗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语言通话"><span class="toc-number">2.2.1.</span> <span class="toc-text">语言通话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#屏幕"><span class="toc-number">2.2.2.</span> <span class="toc-text">屏幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wi-Fi"><span class="toc-number">2.2.3.</span> <span class="toc-text">Wi-Fi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#蓝牙"><span class="toc-number">2.2.4.</span> <span class="toc-text">蓝牙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插卡待机耗电量"><span class="toc-number">2.2.5.</span> <span class="toc-text">插卡待机耗电量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#灭屏待机耗电量"><span class="toc-number">2.2.6.</span> <span class="toc-text">灭屏待机耗电量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计方法"><span class="toc-number">2.3.</span> <span class="toc-text">统计方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dump-batteryinfo"><span class="toc-number">3.</span> <span class="toc-text">Dump batteryinfo</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -556,15 +639,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">电池</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tags</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
             
             <div class="clearfix"></div>
