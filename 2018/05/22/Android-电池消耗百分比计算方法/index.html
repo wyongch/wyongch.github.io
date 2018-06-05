@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>Android  电池消耗百分比计算方法 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改  电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。主要涉及的代码如下：frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值pack">
+  <meta name="description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改">
 <meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android  电池消耗百分比计算方法">
 <meta property="og:url" content="https://www.wyongch.top/2018/05/22/Android-电池消耗百分比计算方法/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改  电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。主要涉及的代码如下：frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值pack">
+<meta property="og:description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/knWUeW5.png">
 <meta property="og:image" content="https://i.imgur.com/vJUvHvI.png">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="https://i.imgur.com/DXl0WkU.png">
 <meta property="og:image" content="https://i.imgur.com/XAw7q95.png">
 <meta property="og:image" content="https://i.imgur.com/nGW3pRG.png">
-<meta property="og:updated_time" content="2018-06-05T08:50:07.624Z">
+<meta property="og:updated_time" content="2018-06-05T08:54:30.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android  电池消耗百分比计算方法">
-<meta name="twitter:description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改  电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。主要涉及的代码如下：frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值pack">
+<meta name="twitter:description" content="概述 在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改">
 <meta name="twitter:image" content="https://i.imgur.com/knWUeW5.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
@@ -211,6 +211,7 @@
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
 <p>在android系统中，用户可以通过Settings中的电池选项，可以看到各个应用所消耗的电池百分比。这部分google原生支持，ODM厂商会在该基础之上做一些定制修改</p>
 </blockquote>
+<a id="more"></a>
 <p>电池消耗一般可以分为两大类，一种是软件消耗，一种是硬件器件消耗。<br>主要涉及的代码如下：<br>frameworks\base\core\res\res\xml\power_profile.xml 配置各个器件不同状态的电流值<br>packages\apps\Settings\src\com\android\settings\fuelgauge\PowerUsageSummary.java 具体的电流计算方法</p>
 <h1 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h1><h2 id="应用程序"><a href="#应用程序" class="headerlink" title="应用程序"></a>应用程序</h2><p>应用程序的电池消耗分为CPU消耗、wake lock消耗、数据传输消耗、GPS消耗、wifi连接消耗，其中wifi比较特殊，除了分散在各个应用中外，在电池统计项中也有一项专门的wifi项，这个也比较好理解，像数据传输、GPS都是应用使用的，而wifi除了应用使用外，即使没有任何应用使用，也还需要保持连接，这部分的消耗就归类到单独的wifi项里了。</p>
 <h3 id="CPU消耗"><a href="#CPU消耗" class="headerlink" title="CPU消耗"></a>CPU消耗</h3><p><img src="https://i.imgur.com/knWUeW5.png" alt=""></p>
@@ -627,15 +628,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">死机重启</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">功耗</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">性能</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,11 +636,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tags</a>
+                <a href="javascript:void(0)" class="js-tag color3">功耗</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color5">死机重启</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">性能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tags</a>
               </li>
             
             <div class="clearfix"></div>
