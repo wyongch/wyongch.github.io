@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="吴勇超的博客">
 <meta property="og:description" content="在分析xUtile 框架之前我一直想着如何用简单的语言把复杂的逻辑讲清楚，今天将跟大家一起从宏观结构和具体实现细节两个方面把这个框架捋一捋">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-26T12:05:00.071Z">
+<meta property="og:image" content="https://i.imgur.com/F5FvMlv.png">
+<meta property="og:updated_time" content="2018-06-27T09:36:58.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xUtile 框架分析">
 <meta name="twitter:description" content="在分析xUtile 框架之前我一直想着如何用简单的语言把复杂的逻辑讲清楚，今天将跟大家一起从宏观结构和具体实现细节两个方面把这个框架捋一捋">
+<meta name="twitter:image" content="https://i.imgur.com/F5FvMlv.png">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
   
@@ -198,6 +200,7 @@
 <a id="more"></a>
 <p>xUtile 主要分为四个模块 view image http db</p>
 <p>初始化时序图如下：</p>
+<p><img src="https://i.imgur.com/F5FvMlv.png" alt=""></p>
 <p>view 模块</p>
 <p>view 主要涉及的代码如下：<br>注解类<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\view\annotation\ContentView.java<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\view\annotation\Event.java<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\view\annotation\ViewInject.java view事件监听管理者<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\view\EventListenerManager.java 根据id查找对应的view<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\view\ViewFinder.java 定义viewinfo对象，重写equals 和hashcode方法，主要用于判断两个view是否相等<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\view\ViewInfo.java view 注入具体实现<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\view\ViewInjectorImpl.java view 注入接口<br>D:\AndroidStudioProjects\xUtils3\xutils\src\main\java\org\xutils\ViewInjector.java</p>
 <p>view 模块主要的功能是 </p>
@@ -814,6 +817,26 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">电池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">功耗</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tags</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">死机重启</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">性能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">省电模式</a>
               </li>
              
@@ -822,27 +845,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">死机重启</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">功耗</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">性能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tags</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">电池</a>
               </li>
             
             <div class="clearfix"></div>
