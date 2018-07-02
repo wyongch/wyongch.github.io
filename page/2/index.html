@@ -168,14 +168,14 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="tags-随笔" class="article article-type-tags  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android-ANR问题分析定位方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/23/随笔/">随笔</a>
+      <a class="article-title" href="/2018/05/23/Android-ANR问题分析定位方法/">Android ANR问题分析定位方法</a>
     </h1>
   
 
@@ -183,18 +183,24 @@
 <!-- //span 给的 id 是文章的 url 作为唯一的 key 值 -->
 
   <a href="javascript:;" class="archive-article-date">
-      <i class="icon-smile icon"></i> 阅读数:<span id="/2018/05/23/随笔/" class="pageViews">0</span>次
+      <i class="icon-smile icon"></i> 阅读数:<span id="/2018/05/23/Android-ANR问题分析定位方法/" class="pageViews">0</span>次
   </a>
 
         
-        <a href="/2018/05/23/随笔/" class="archive-article-date">
-  	<time datetime="2018-05-23T02:25:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-23</time>
+        <a href="/2018/05/23/Android-ANR问题分析定位方法/" class="archive-article-date">
+  	<time datetime="2018-05-23T06:07:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p>Crash类的基本上都是由各类未处理的JAVA异常导致，打开下载回来的日志压缩包，里面一般都有名为 <a href="mailto:system_app_crash@xxxxxxxxxxxx.txt" target="_blank" rel="noopener">system_app_crash@xxxxxxxxxxxx.txt</a> 的日志，直接开启即可看到对应的调用堆栈，一般都能直接看到出错的代码具体位置以及直接原因（根据JAVA异常类的含义来推断），属于最好分析解决的一类。麻烦一点的可能就是异常是从native层通过JNI抛出的异常，此时只能继续通过JNI继续跟踪到抛出对应异常的位置，分析原因并解决。</p>
+<blockquote>
+<p>Crash 主要分为Java层的和Native层，java层的crash 一般比较好分析，通过 log 和调用trace 可以准确的定位到具体是哪个类哪一行出现的问题，一般有空指针或者除数为零的原因导致；Native crash 一般是jni抛出的异常，需要通过 命令和对应的错误地址 定位是哪里出现问题</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/05/23/Android-ANR问题分析定位方法/#more">more >></a>
         
       
 
@@ -208,17 +214,32 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tags</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Activity</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/23/随笔/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/05/23/Android-ANR问题分析定位方法/">展开全文 >></a>
         </p>
       
 
@@ -951,10 +972,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">省电模式</a>
               </li>
              
@@ -979,7 +996,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tags</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
             
             <div class="clearfix"></div>
