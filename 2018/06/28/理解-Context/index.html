@@ -9,7 +9,7 @@
   <title>理解 Context | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="作为一名开发人员Context 在程序设计中经常被使用到，如果你还没听说，哈哈哈……说明你是一个假程序员，我们都知道目前操作系统与用户进行交互形式是以事件驱动的，Context就是对用户与操作系统交互过程这一场景的抽象，有了这个概念 Context就好理解了。">
-<meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
+<meta name="keywords" content="Android,Context">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解 Context">
 <meta property="og:url" content="https://www.wyongch.top/2018/06/28/理解-Context/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://i.imgur.com/mcqRcGY.png">
 <meta property="og:image" content="https://i.imgur.com/ZEPSQVx.png">
 <meta property="og:image" content="https://i.imgur.com/m40sOIp.png">
-<meta property="og:updated_time" content="2018-07-02T07:12:52.166Z">
+<meta property="og:updated_time" content="2018-07-02T07:45:26.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解 Context">
 <meta name="twitter:description" content="作为一名开发人员Context 在程序设计中经常被使用到，如果你还没听说，哈哈哈……说明你是一个假程序员，我们都知道目前操作系统与用户进行交互形式是以事件驱动的，Context就是对用户与操作系统交互过程这一场景的抽象，有了这个概念 Context就好理解了。">
@@ -336,7 +336,7 @@ context.setOuterContext(service);
         data.info.applicationInfo, data.compatInfo);
 </code></pre><p>赋值代码同样使用了getPackageInfoNoCheck（），这就意味着Service对应的Context对象内部的mPackageInfo与Activity，Application中完全相同。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上三节可以看出，创建Context对象过程基本上是相同的，包括代码结构也十分类似，所不同的仅仅是针对Application，Activity，Service使用了不同的数据对象，可总结为如下表：</p>
-<table><br>  <tr><br>    <th width="25%," bgcolor="">类名</th><br>    <th width="25%," bgcolor="">远程数据类</th><br>    &lt;th width=”25%”, bgcolor=&gt;本地数据类<br>    &lt;th width=”25%”, bgcolor=&gt;赋值方式<br>  </tr><br>  <tr><br>    <td> Application </td><br>    <td> ApplicationInfo </td><br>    <td> AppBindData </td><br>    <td> getPackageInfoNoCheck() </td><br>  </tr><br>  <tr><br>    <td> Activity </td><br>    <td> ActivityInfo </td><br>    <td> ActivityRecord </td><br>    <td> getPackageInfo() </td><br>  </tr><br>  <tr><br>    <td> Service </td><br>    <td> ServiceInfo </td><br>    <td> CreateServiceData </td><br>    <td> getPackageInfoNoCheck() </td><br>  </tr><br></table>
+<table><br>  <tr><br>    <th width="25%," bgcolor=""> 类名</th><br>    <th width="25%," bgcolor=""> 远程数据类</th><br>    <th width="25%," bgcolor=""> 本地数据类 </th><br>    <th width="25%," bgcolor=""> 赋值方式 </th><br>  </tr><br>  <tr><br>    <td> Application </td><br>    <td> ApplicationInfo </td><br>    <td> AppBindData </td><br>    <td> getPackageInfoNoCheck() </td><br>  </tr><br>  <tr><br>    <td> Activity </td><br>    <td> ActivityInfo </td><br>    <td> ActivityRecord </td><br>    <td> getPackageInfo() </td><br>  </tr><br>  <tr><br>    <td> Service </td><br>    <td> ServiceInfo </td><br>    <td> CreateServiceData </td><br>    <td> getPackageInfoNoCheck() </td><br>  </tr><br></table>
 
 
 <p>从上面三节我们也可以看出，实际上一个应用包含Context的个数为：</p>
@@ -380,6 +380,21 @@ context.setOuterContext(service);
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Context</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -682,6 +697,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">死机重启</a>
               </li>
              
@@ -698,7 +717,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">xUtile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Context</a>
               </li>
             
             <div class="clearfix"></div>

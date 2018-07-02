@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://www.wyongch.top">
   <title>WindowManagerService 分析 | 吴勇超的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
-<meta name="keywords" content="blog,吴勇超,前端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,用户体验">
+  <meta name="description" content="WMS 是android核心服务之一，也是图形用户接口引擎，他管理手机系统中所有窗口。所谓管理大致包括创建，删除窗口，以及将某个窗口设置为焦点窗口，焦点窗口是指当前正在和用户交互的窗口。">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WindowManagerService 分析">
 <meta property="og:url" content="https://www.wyongch.top/2018/06/14/WindowManagerService-工作原理/index.html">
 <meta property="og:site_name" content="吴勇超的博客">
-<meta property="og:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta property="og:description" content="WMS 是android核心服务之一，也是图形用户接口引擎，他管理手机系统中所有窗口。所谓管理大致包括创建，删除窗口，以及将某个窗口设置为焦点窗口，焦点窗口是指当前正在和用户交互的窗口。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-14T01:17:18.182Z">
+<meta property="og:updated_time" content="2018-07-02T07:36:27.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WindowManagerService 分析">
-<meta name="twitter:description" content="湖北民族学院10级，就职于GOME。擅长各项前端技能，深入研究移动端开发与前端性能。非专业视觉设计师。此为博客一枚。">
+<meta name="twitter:description" content="WMS 是android核心服务之一，也是图形用户接口引擎，他管理手机系统中所有窗口。所谓管理大致包括创建，删除窗口，以及将某个窗口设置为焦点窗口，焦点窗口是指当前正在和用户交互的窗口。">
   
     <link rel="alternative" href="/atom.xml" title="吴勇超的博客" type="application/atom+xml">
   
@@ -194,7 +194,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>WMS 是android核心服务之一，也是图形用户接口引擎，他管理手机系统中所有窗口。所谓管理大致包括创建，删除窗口，以及将某个窗口设置<br>为焦点窗口，焦点窗口是指当前正在和用户交互的窗口。</p>
+</blockquote>
+<a id="more"></a>
+
       
 
       
@@ -233,6 +237,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -544,6 +559,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">死机重启</a>
               </li>
              
@@ -560,7 +579,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">xUtile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Context</a>
               </li>
             
             <div class="clearfix"></div>
